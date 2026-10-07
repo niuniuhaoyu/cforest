@@ -21,6 +21,8 @@ program define cforest, rclass
 
     marksample touse
     capture drop cforest_tau
+    capture drop cforest_tau_lb
+    capture drop cforest_tau_ub
 
     * ---------- pass to Python ----------
     local _xvars "`indep'"
@@ -30,6 +32,7 @@ program define cforest, rclass
     local _ntrees "`numtrees'"
     local _minsize "`minnodesize'"
     local _seed "`seed'"
+    local _level "`level'"
 
     findfile "cforest.py"
     local _pyfile "`r(fn)'"
@@ -42,7 +45,7 @@ program define cforest, rclass
     di as text "  trees          = " %9.0f `numtrees'
     di as text "  ATE            = " %9.4f scalar(cf_ate)
     di as text "  CATT           = " %9.4f scalar(cf_catt)
-    di as text "  CATE `cforest_tau' (per-observation tau-hat) added"
+    di as text "  CATE `cforest_tau' (with `cforest_tau_lb' / `cforest_tau_ub') added"
 
     return scalar ate = scalar(cf_ate)
     return scalar catt = scalar(cf_catt)
