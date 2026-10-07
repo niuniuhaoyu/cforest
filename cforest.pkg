@@ -1,0 +1,12 @@
+d 'cforest': Stata module for causal forests / generalized random forests
+d
+d Estimates the conditional average treatment effect (CATE) for a binary
+d treatment using a causal forest, following Wager and Athey (2018) and
+d Athey, Tibshirani and Wager (2019).
+d
+d Author: Haoyu Niu
+d Distribution-Date: 20261007
+d Requires: Stata version 16
+d
+f cforest.ado
+f cforest.sthlp
