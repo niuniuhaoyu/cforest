@@ -10,3 +10,4 @@ d Requires: Stata version 16
 d
 f cforest.ado
 f cforest.sthlp
+f cforest.py

@@ -1,0 +1,3 @@
+DATA: addObs, addVarByte, addVarDouble, addVarFloat, addVarInt, addVarLong, addVarStr, addVarStrL, allocateStrL, dropVar, get, getAsDict, getAt, getBestType, getFormattedValue, getMaxStrLength, getMaxVars, getObsTotal, getStrVarWidth, getVarCount, getVarFormat, getVarIndex, getVarLabel, getVarName, getVarType, isAlias, isVarTypeStr, isVarTypeStrL, isVarTypeString, keepVar, list, readBytes, renameVar, setObsTotal, setVarFormat, setVarLabel, store, storeAt, storeBytes, writeBytes
+MATRIX: convertSymmetricToStd, create, get, getAt, getColNames, getColTotal, getRowNames, getRowTotal, list, setColNames, setRowNames, store, storeAt
+SCALAR: getString, getValue, setString, setValue
