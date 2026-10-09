@@ -4,6 +4,8 @@
 {p 4 8 2}{bf:cforest} — Causal forests for heterogeneous treatment effects{right:version 0.3.0}
 {hline}
 
+{p 4 4 2}{it:Chinese help / 中文帮助:} {help cforest_zh}
+
 {title:Title}
 
 {p 4 4 2}

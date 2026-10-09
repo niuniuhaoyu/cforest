@@ -1,8 +1,10 @@
 {smcl}
 {* 08 Oct 2026}{...}
 {hline}
-{p 4 8 2}{bf:cforest_predict} — predict CATE after {bf:cforest}{right:version 0.2.0}
+{p 4 8 2}{bf:cforest_predict} — predict CATE after {bf:cforest}{right:version 0.3.0}
 {hline}
+
+{p 4 4 2}{it:Chinese help / 中文帮助:} {help cforest_zh}
 
 {title:Title}
 

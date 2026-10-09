@@ -4,6 +4,8 @@
 {p 4 8 2}{bf:cforest_plot} — binned CATE curve after {bf:cforest}{right:version 0.3.0}
 {hline}
 
+{p 4 4 2}{it:Chinese help / 中文帮助:} {help cforest_zh}
+
 {title:Title}
 
 {p 4 4 2}
