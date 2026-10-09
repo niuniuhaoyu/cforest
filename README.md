@@ -102,3 +102,7 @@ Tests: `examples/_test_cforest.do`, `examples/_test_predict.do`,
 Method: Wager & Athey (2018); Athey, Tibshirani & Wager (2019).
 The `grf` reference implementation is GPL-3; linking its core yields a
 GPL/AGPL-licensed plugin. This package is AGPL-3.0.
+
+---
+
+[English](README.md) | [简体中文](README_zh.md)

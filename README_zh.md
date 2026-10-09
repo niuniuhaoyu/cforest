@@ -95,3 +95,7 @@ OLS 把 τ̂ 对 x₁ 回归会产生回归稀释（regression dilution）——
 
 方法：Wager & Athey (2018)；Athey, Tibshirani & Wager (2019)。
 `grf` 参考实现为 GPL-3；链接其内核的插件按 GPL/AGPL 分发。本包为 AGPL-3.0。
+
+---
+
+[English](README.md) | [简体中文](README_zh.md)
