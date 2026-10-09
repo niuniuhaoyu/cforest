@@ -1,5 +1,7 @@
 # cforest
 
+[English](README.md) | [简体中文](README_zh.md)
+
 **Causal forests for heterogeneous treatment effects, for Stata**
 
 [![Stata 16+](https://img.shields.io/badge/Stata-16%2B-blue.svg)](https://www.stata.com/)
