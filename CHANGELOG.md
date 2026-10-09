@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] — 2026-10-08
+
+### Added
+- `cforest_plot`: binned CATE curve (equal-count bins) with a confidence band;
+  `saving(filename)` exports the graph.
+- `cforest_blp`: best linear projection of the CATE on the covariates (OLS with
+  robust SE), the standard GRF heterogeneity summary; returns `r(blp)`.
+- `cforest, graph`: variable-importance bar chart.
+- Out-of-bag CATE added as the variable `cforest_tau_oob`; `r(ate_oob)` and the
+  variable-importance matrix `r(importance)` are returned.
+- `examples/_test_extras.do` (importance / OOB / BLP), `examples/cforest_figures.do`
+  (README figures), `docs/stage-b.md` (native-plugin roadmap).
+
+### Verified
+- OOB CATE: corr(τ̂_oob, x₁) = 0.94.
+- Best linear projection: slope on x₁ = 0.70, x₂/x₃ ≈ 0.02 / 0.01 (positive and
+  dominant; attenuated by regression dilution, as in `grf`).
+- Variable importance: x₁ = 0.72, x₂ = 0.21, x₃ = 0.07.
+
 ## [0.2.0] — 2026-10-08
 
 ### Added

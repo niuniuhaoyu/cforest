@@ -1,7 +1,7 @@
 {smcl}
 {* 08 Oct 2026}{...}
 {hline}
-{p 4 8 2}{bf:cforest} — Causal forests for heterogeneous treatment effects{right:version 0.2.0}
+{p 4 8 2}{bf:cforest} — Causal forests for heterogeneous treatment effects{right:version 0.3.0}
 {hline}
 
 {title:Title}
@@ -16,7 +16,7 @@ binary treatment using a causal forest.
 {cmd:cforest} {it:depvar indepvars} {ifin}, {cmdab:treat:(}{it:varname}{cmd:)}
 {cmd:[}{cmd:numtrees:(}{it:#}{cmd:)} {cmd:minnodesize:(}{it:#}{cmd:)}
 {cmd:seed:(}{it:#}{cmd:)} {cmd:level:(}{it:#}{cmd:)}
-{cmd:saving:(}{it:filename}{cmd:)}{cmd:]}
+{cmd:saving:(}{it:filename}{cmd:)} {cmd:graph}{cmd:]}
 
 {title:Description}
 
@@ -27,10 +27,13 @@ Wager and Athey (2018) and Athey, Tibshirani and Wager (2019).
 
 {pstd}
 This is {bf:Stage A}: the estimator is driven through Stata's Python
-integration, calling {cmd:econml.grf.CausalForest}. It adds
-{cmd:cforest_tau} (the CATE) with pointwise bounds {cmd:cforest_tau_lb} and
-{cmd:cforest_tau_ub}, and returns {cmd:r(ate)}, {cmd:r(catt)} and
-{cmd:r(numtrees)}. Use {help cforest_predict} to predict CATE for new data.
+integration, calling {cmd:econml.grf.CausalForest}. It adds {cmd:cforest_tau}
+(the CATE), pointwise bounds {cmd:cforest_tau_lb} / {cmd:cforest_tau_ub}, and
+out-of-bag predictions {cmd:cforest_tau_oob}; returns {cmd:r(ate)},
+{cmd:r(catt)}, {cmd:r(ate_oob)}, {cmd:r(importance)}, {cmd:r(covariates)} and
+{cmd:r(numtrees)}. Use {help cforest_predict} to predict CATE for new data,
+{help cforest_blp} for the best linear projection, and {help cforest_plot} for a
+binned CATE curve.
 
 {title:Options}
 
@@ -52,9 +55,19 @@ intervals; default is {cmd:level(95)}.
 {p 4 8 2}{cmd:saving(}{it:filename}{cmd:)} saves the fitted model for later use
 by {help cforest_predict}.
 
+{p 4 8 2}{cmd:graph} draws a variable-importance bar chart.
+
+{title:Stored results}
+
+{p 4 8 2}{cmd:r(ate)}, {cmd:r(catt)}, {cmd:r(ate_oob)}, {cmd:r(numtrees)},
+{cmd:r(importance)} ({it:p}{cmd:x1} variable importances), {cmd:r(covariates)},
+{cmd:r(tauvar)}, {cmd:r(oobvar)}.
+
 {title:Examples}
 
-{p 8 8 2}{cmd:. cforest y x1 x2 x3, treat(w) numtrees(2000) seed(12345)}
+{p 8 8 2}{cmd:. cforest y x1 x2 x3, treat(w) numtrees(2000) seed(12345) saving(mymodel.joblib)}
+{p 8 8 2}{cmd:. cforest_blp}
+{p 8 8 2}{cmd:. cforest_plot, over(x1) saving(cate.png)}
 {p 8 8 2}{cmd:. cforest_predict tauhat, lower(tau_lo) upper(tau_hi)}
 
 {title:References}
@@ -70,4 +83,4 @@ Athey, S., J. Tibshirani, and S. Wager. 2019. Generalized random forests.
 {title:Also see}
 
 {p 4 4 2}
-{help cforest_predict}
+{help cforest_predict}; {help cforest_blp}; {help cforest_plot}

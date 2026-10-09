@@ -76,9 +76,9 @@
 
 ### Task 6: 文档 + 跨平台 + 发布
 
-- [ ] **Step 1**: 英文 README / sthlp / 示例 / CHANGELOG。
-- [ ] **Step 2**: 跨平台编译（Win/mac/Linux）+ `net install` 打包（Review Focus #6）。
-- [ ] **Step 3**: push 到 `niuniuhaoyu/cforest`；（可选）发 SSC / Stata Journal。
+- [x] **Step 1**: 英文 README / sthlp / 示例 / CHANGELOG。
+- [ ] **Step 2**: 跨平台编译（Win/mac/Linux）+ `net install` 打包（Review Focus #6；见 `docs/stage-b.md`）。
+- [x] **Step 3**: push 到 `niuniuhaoyu/cforest`；（可选）发 SSC / Stata Journal。
 
 ---
 

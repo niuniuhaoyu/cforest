@@ -1,5 +1,5 @@
 *! cforest: Causal Forests for Heterogeneous Treatment Effects
-*! version 0.2.0  2026-10-08  Haoyu Niu
+*! version 0.3.0  2026-10-08  Haoyu Niu
 *! Stage A: drives econml.grf.CausalForest through Stata's Python integration.
 *! Reference: Wager & Athey (2018); Athey, Tibshirani & Wager (2019).
 
@@ -12,7 +12,8 @@ program define cforest, rclass
          minnodesize(integer 5) ///          minimum leaf size
          seed(integer 12345) ///             RNG seed
          level(real 95) ///                  confidence level
-         saving(string)]                     // save fitted model to file
+         saving(string) ///                  save fitted model to file
+         graph]                              // variable-importance graph
 
     local dep : word 1 of `varlist'
     local indep ""
@@ -21,9 +22,9 @@ program define cforest, rclass
     }
 
     marksample touse
-    capture drop cforest_tau
-    capture drop cforest_tau_lb
-    capture drop cforest_tau_ub
+    foreach v in cforest_tau cforest_tau_lb cforest_tau_ub cforest_tau_oob {
+        capture drop `v'
+    }
 
     * ---------- pass to Python ----------
     local _xvars "`indep'"
@@ -48,10 +49,36 @@ program define cforest, rclass
     di as text "  trees          = " %9.0f `numtrees'
     di as text "  ATE            = " %9.4f scalar(cf_ate)
     di as text "  CATT           = " %9.4f scalar(cf_catt)
-    di as text "  CATE `cforest_tau' (with `cforest_tau_lb' / `cforest_tau_ub') added"
+    di as text "  CATE `cforest_tau' (+ lb/ub, + oob) added"
+
+    * ---------- variable-importance graph ----------
+    if "`graph'" != "" {
+        preserve
+        quietly {
+            svmat double _cforest_imp, names(imp)
+            keep imp1
+            gen str32 covariate = ""
+            local i = 0
+            foreach v of local indep {
+                local ++i
+                replace covariate = "`v'" in `i'
+            }
+            keep in 1/`: word count `indep''
+        }
+        graph hbar imp1, over(covariate, label(angle(0))) ///
+            ytitle("Variable importance") ///
+            title("cforest: variable importance") ///
+            scheme(s2color) name(cforest_imp, replace)
+        restore
+    }
 
     return scalar ate = scalar(cf_ate)
     return scalar catt = scalar(cf_catt)
+    return scalar ate_oob = scalar(cf_ate_oob)
     return scalar numtrees = `numtrees'
+    return matrix importance = _cforest_imp
     return local tauvar "cforest_tau"
+    return local oobvar "cforest_tau_oob"
+    return local covariates "`indep'"
+    return local depvar "`dep'"
 end

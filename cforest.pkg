@@ -3,7 +3,9 @@ d
 d Estimates the conditional average treatment effect (CATE) for a binary
 d treatment using a causal forest, following Wager and Athey (2018) and
 d Athey, Tibshirani and Wager (2019). Stage A drives econml.grf.CausalForest
-d through Stata's Python integration; cforest_predict predicts CATE for new data.
+d through Stata's Python integration. Companion commands: cforest_predict
+d (out-of-sample CATE), cforest_blp (best linear projection),
+d cforest_plot (binned CATE curve).
 d
 d Author: Haoyu Niu
 d Distribution-Date: 20261008
@@ -15,3 +17,7 @@ f cforest.py
 f cforest_predict.ado
 f cforest_predict.sthlp
 f cforest_predict.py
+f cforest_blp.ado
+f cforest_blp.sthlp
+f cforest_plot.ado
+f cforest_plot.sthlp
