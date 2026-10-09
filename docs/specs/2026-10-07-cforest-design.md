@@ -111,10 +111,10 @@ cforest/
 
 ## 8. 交付物与验收
 
-- [ ] Stage A：`cforest`（Python 桥）可跑，对拍 R `grf` 通过
+- [x] Stage A：`cforest`（Python 桥）可跑，对拍 R `grf` 通过（corr(τ̂_cforest, τ̂_grf)=0.97）
 - [ ] Stage B：原生 plugin，`net install` 可用
-- [ ] 英文 README / sthlp / 示例 / CHANGELOG
-- [ ] 上传 `niuniuhaoyu/cforest`
+- [x] 英文 README / sthlp / 示例 / CHANGELOG
+- [x] 上传 `niuniuhaoyu/cforest`
 
 ---
 

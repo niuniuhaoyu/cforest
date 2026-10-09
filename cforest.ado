@@ -1,5 +1,5 @@
 *! cforest: Causal Forests for Heterogeneous Treatment Effects
-*! version 0.1.0  2026-10-07  Haoyu Niu
+*! version 0.2.0  2026-10-08  Haoyu Niu
 *! Stage A: drives econml.grf.CausalForest through Stata's Python integration.
 *! Reference: Wager & Athey (2018); Athey, Tibshirani & Wager (2019).
 
@@ -11,7 +11,8 @@ program define cforest, rclass
         [numtrees(integer 2000) ///          number of trees
          minnodesize(integer 5) ///          minimum leaf size
          seed(integer 12345) ///             RNG seed
-         level(real 95)]                     // confidence level
+         level(real 95) ///                  confidence level
+         saving(string)]                     // save fitted model to file
 
     local dep : word 1 of `varlist'
     local indep ""
@@ -33,6 +34,8 @@ program define cforest, rclass
     local _minsize "`minnodesize'"
     local _seed "`seed'"
     local _level "`level'"
+    local _saving "`saving'"
+    local _session "`c(tmpdir)'cforest_session.joblib"
 
     findfile "cforest.py"
     local _pyfile "`r(fn)'"

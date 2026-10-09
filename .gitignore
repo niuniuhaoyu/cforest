@@ -1,5 +1,6 @@
 .DS_Store
 *.log
+*.joblib
 __pycache__/
 *.mlib
 .superpowers/

@@ -42,28 +42,28 @@
 
 **Files:** `examples/cforest_simdata.do`、`examples/reference/run_grf_check.R`
 
-- [ ] **Step 1**: DGP：τ(x) 已知（如 τ(x)=x₁），含混杂；生成 `data/cforest_sim.dta` 并导出 csv。
-- [ ] **Step 2**: R 装/确认 `grf`，`causal_forest` 跑出 τ̂(x)、ATE/CATT 参考值。
-- [ ] **Step 3**: Commit。
+- [x] **Step 1**: DGP：τ(x) 已知（如 τ(x)=x₁），含混杂；生成 `data/cforest_sim.dta` 并导出 csv。
+- [x] **Step 2**: R 装/确认 `grf`，`causal_forest` 跑出 τ̂(x)、ATE/CATT 参考值。
+- [x] **Step 3**: Commit。
 
 ### Task 3: Stage A — `cforest`（Python 桥）
 
 **Files:** `cforest.ado`、`cforest.mata`（工具）、`examples/_test_cforest.do`
 
-- [ ] **Step 1**: 装 Python 侧依赖（`skgrf` 或 EconML；见 Review Focus #1），确认 Stata 能 `python: import`。
-- [ ] **Step 2**: 写失败测试：已知 τ(x)=x₁ 的 DGP 下，`cforest` 的 CATE 相关性与真值高、ATE 接近真值。
-- [ ] **Step 3**: 实现 `cforest`：把 X/W/Y 传 Python，跑因果森林，回传 τ̂(x)/ATE/CATT，**保证行对齐**（Review Focus #2）。
-- [ ] **Step 4**: 实现 `predict`（对新数据出 CATE）+ 固定种子可复现（#4）。
-- [ ] **Step 5**: 运行测试，预期通过。
-- [ ] **Step 6**: Commit。
+- [x] **Step 1**: 装 Python 侧依赖（`skgrf` 或 EconML；见 Review Focus #1），确认 Stata 能 `python: import`。
+- [x] **Step 2**: 写失败测试：已知 τ(x)=x₁ 的 DGP 下，`cforest` 的 CATE 相关性与真值高、ATE 接近真值。
+- [x] **Step 3**: 实现 `cforest`：把 X/W/Y 传 Python，跑因果森林，回传 τ̂(x)/ATE/CATT，**保证行对齐**（Review Focus #2）。
+- [x] **Step 4**: 实现 `predict`（对新数据出 CATE）+ 固定种子可复现（#4）。
+- [x] **Step 5**: 运行测试，预期通过。
+- [x] **Step 6**: Commit。
 
 ### Task 4: 对拍 R grf
 
 **Files:** `examples/_test_cforest_grf.do`、参考脚本
 
-- [ ] **Step 1**: 同一数据、同参数，比较 Stata cforest 与 R grf 的 ATE/CATT、τ̂(x)（容差按实现定）。
-- [ ] **Step 2**: 记录差异与原因（honest splitting/默认参数/draw 差异）。
-- [ ] **Step 3**: Commit。
+- [x] **Step 1**: 同一数据、同参数，比较 Stata cforest 与 R grf 的 ATE/CATT、τ̂(x)（容差按实现定）。
+- [x] **Step 2**: 记录差异与原因（honest splitting/默认参数/draw 差异）。
+- [x] **Step 3**: Commit。
 
 ### Task 5: Stage B — 原生 plugin 最小 PoC
 

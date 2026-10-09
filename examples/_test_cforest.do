@@ -1,3 +1,4 @@
+*! _test_cforest.do - Stage A acceptance test
 version 16
 clear all
 set more off
@@ -21,4 +22,12 @@ di as result "corr(tau_hat, x1) = " %6.4f `rho'
 di as result "ATE  = " %7.4f `ate' " (true 0)"
 assert `rho' > 0.5
 assert abs(`ate') < 0.3
+
+* reproducibility: same seed -> identical CATE
+rename cforest_tau tau_run1
+cforest y x1 x2 x3, treat(w) numtrees(500) seed(12345) level(95)
+qui count if abs(cforest_tau - tau_run1) > 1e-10
+assert r(N) == 0
+di as result "reproducible (same seed): identical tau on all obs"
+
 di as result "CFOREST STAGE-A (with CI) TEST PASS"

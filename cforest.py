@@ -2,6 +2,7 @@
 # Reads Stata locals via sfi, fits a causal forest, writes results back.
 # Reference: Wager & Athey (2018); Athey, Tibshirani & Wager (2019).
 import numpy as np
+import joblib
 from sfi import Data, Macro, Scalar
 from econml.grf import CausalForest
 
@@ -44,3 +45,10 @@ Data.store("cforest_tau_ub", None, full_u.tolist())
 Scalar.setValue("cf_ate", float(tau.mean()))
 Scalar.setValue("cf_catt", float(tau[Ws == 1].mean()))
 Scalar.setValue("cf_n", float(Xs.shape[0]))
+
+# ---- always persist the fitted model so cforest_predict can reuse it ----
+_payload = {"model": cf, "xvars": xv, "yvar": yv, "wvar": wv, "level": level}
+joblib.dump(_payload, Macro.getLocal("_session"))
+_saving = Macro.getLocal("_saving")
+if _saving not in ("", ".", None):
+    joblib.dump(_payload, _saving)
